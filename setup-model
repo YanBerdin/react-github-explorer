@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd $1
+git clone git@github.com:O-clock-Radium/React-modele.git
+cp -n React-modele/{.*,*} .
+cp -rn React-modele/{src,config,public} .
+yarn
+rm -rf React-modele
