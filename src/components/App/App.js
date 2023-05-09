@@ -15,7 +15,8 @@ function App() {
       const response = await axios.get(
         "https://api.github.com/search/repositories?q=React"
       );
-
+      
+      setRepositories(response.data.items);
       setSearchResults(response.data.total_count);
 
       console.log(response.data.total_count);
@@ -40,9 +41,9 @@ function App() {
   // }, []);
 
 
-  useEffect(() => {
-    console.log("Hello ! Le composant App est rendu");
-  }, []);
+  // useEffect(() => {
+  //   console.log("Hello ! Le composant App est rendu");
+  // }, []);
 
   return (
     <div className="app">
@@ -58,3 +59,4 @@ function App() {
 }
 
 export default App;
+

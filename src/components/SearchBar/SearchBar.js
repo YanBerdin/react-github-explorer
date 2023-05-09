@@ -1,3 +1,5 @@
+import React from 'react';
+
 
 function SearchBar() {
   return (
@@ -6,5 +8,11 @@ function SearchBar() {
     </div>
   );
 }
+
+
+
+
+
+
 
 export default SearchBar;
