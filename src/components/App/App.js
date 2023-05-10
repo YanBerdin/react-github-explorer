@@ -50,10 +50,10 @@ function App() {
   return (
     <Container>
        <Header />
-       <button type="button" onClick={loadRepositories}>
+{/*        <button type="button" onClick={loadRepositories}>
         Charger les Repositories
-      </button>
-     
+      </button> */}
+      <button onClick={loadRepositories} className="fluid ui button">Charger les Repositories</button>
       <SearchBar newSearch={newSearch} />
       {/* <IndexPage /> */}
 
