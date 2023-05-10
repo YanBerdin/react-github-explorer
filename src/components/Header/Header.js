@@ -1,13 +1,20 @@
 import "./Header.scss";
+import logoGithub from "src/assets/images/logo-github.png";
+import { Segment } from "semantic-ui-react";
 
 function Header() {
   return (
-    <div className="Header">
+    /*     <div className="Header">
       <img
-        src="https://logos-world.net/wp-content/uploads/2020/11/GitHub-Emblem.png"
+        src=""
         alt="Logo Git Hub"
       />
-    </div>
+    </div> */
+    <Segment>
+      <div className="header-container">
+        <img className="header-image" src={logoGithub} alt="Logo Github" />
+      </div>
+    </Segment>
   );
 }
 

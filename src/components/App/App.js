@@ -5,17 +5,21 @@ import SearchBar from "../SearchBar/SearchBar";
 import ReposResults from "../ReposResults/ReposResults";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+
+import { Container } from "semantic-ui-react";
 
 function App() {
   const [repositories, setRepositories] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const [newSearch, setnewSearch] = useState([]);
 
   const loadRepositories = async () => {
     try {
       const response = await axios.get(
         "https://api.github.com/search/repositories?q=React"
       );
-      
+
       setRepositories(response.data.items);
       setSearchResults(response.data.total_count);
 
@@ -25,7 +29,6 @@ function App() {
       alert("Le serveur ne fonctionne plus, revenez plus tard.");
     }
   };
-
 
   // // Au premier rendu du composant App, je souhaite récupérer la liste des repositories
   // useEffect(() => {
@@ -40,23 +43,25 @@ function App() {
   //     });
   // }, []);
 
-
-  // useEffect(() => {
-  //   console.log("Hello ! Le composant App est rendu");
-  // }, []);
+  useEffect(() => {
+    console.log("Hello ! Le composant App est rendu");
+  }, []);
 
   return (
-    <div className="app">
-      <button type="button" onClick={loadRepositories}>
+    <Container>
+       <Header />
+       <button type="button" onClick={loadRepositories}>
         Charger les Repositories
       </button>
-      <Header />
-      <SearchBar />
+     
+      <SearchBar newSearch={newSearch} />
       {/* <IndexPage /> */}
+
+
       <ReposResults repositories={repositories} searchResults={searchResults} />
-    </div>
+
+    </Container>
   );
 }
 
 export default App;
-

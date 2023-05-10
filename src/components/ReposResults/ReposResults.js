@@ -1,7 +1,10 @@
 function ReposResults({ repositories }, { searchResults }) {
+  
+  // const searchResult = searchResults.length; 
+  
   return (
 
-    
+// console.log(searchResult),
 
     <div className="ReposResults">
      
