@@ -1,6 +1,7 @@
 {
   "extends": "airbnb",
-  "parser": "@babel/eslint-parser",
+  "parser": "@babel/eslint-parser", // Ajout pour fixer=> Parsing error: No Babel config file detected
+  "requireConfigFile": false,
   "env": {
     "browser": true
   },
