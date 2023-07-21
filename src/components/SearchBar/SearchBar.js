@@ -1,5 +1,4 @@
-// import React from "react";
- 
+// import React from "react"
 import { Form, Input, Segment } from "semantic-ui-react";
 
 function SearchBar() {
