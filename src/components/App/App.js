@@ -6,19 +6,19 @@ import ReposResults from "../ReposResults/ReposResults";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import Message from '../Message/Message';
+import Message from "../Message/Message";
 import { Container } from "semantic-ui-react";
 
 function App() {
   const [repositories, setRepositories] = useState([]);
   // const [searchResults, setSearchResults] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
-  const [newSearch, setnewSearch] = useState([]);
+  const [newSearch, setNewSearch] = useState("react");
 
   const loadRepositories = async () => {
     try {
       const response = await axios.get(
-        "https://api.github.com/search/repositories?q=React"
+        `https://api.github.com/search/repositories?q=${newSearch}`
       );
 
       setRepositories(response.data.items);
@@ -54,18 +54,20 @@ function App() {
   return (
     <Container>
       <Header />
-      <Message totalCount={totalCount} /> 
-        
-      {/*        <button type="button" onClick={loadRepositories}>
-        Charger les Repositories
-      </button> */}
+      <Message totalCount={totalCount}  newSearch={newSearch}/>
+
       <button onClick={loadRepositories} className="fluid ui button">
         Charger les Repositories
       </button>
-      <SearchBar newSearch={newSearch} />
+      <SearchBar
+        newSearch={newSearch}
+        setNewSearch={setNewSearch}
+        loadRepositories={loadRepositories}
+      />
+
       {/* <IndexPage /> */}
 
-      <ReposResults repositories={repositories} totalCount={totalCount} />
+      <ReposResults repositories={repositories} />
     </Container>
   );
 }

@@ -1,25 +1,31 @@
-// import React from "react"
+import PropTypes from "prop-types";
 import { Form, Input, Segment } from "semantic-ui-react";
 
-function SearchBar() {
-  
+function SearchBar({ newSearch, setNewSearch, loadRepositories }) {
   const segmentStyle = {
-    marginTop: '1.5rem',
+    marginTop: "1.5rem",
   };
 
-  
   // Autre option pour le style
   // <Segment style={{ marginTop: '1.5rem' }}>
   return (
+   
     <Segment style={segmentStyle}>
-
-      <Form>
-        {/*       <Input type="search" placeholder="Chercher un Repository..." /> */}
+      <Form
+        onSubmit={(event) => {
+          event.preventDefault();
+          loadRepositories();
+        }}
+      >
         <Input
           fluid
           icon="search"
           iconPosition="left"
           placeholder="Search..."
+          newSearch={newSearch}
+          onChange={(event) => {
+            setNewSearch(event.target.value);
+          }}
         />
       </Form>
     </Segment>
@@ -62,5 +68,11 @@ et on ne la lira qu'au moment du submit
   />
 </form>
 */
+
+SearchBar.propTypes = {
+  newSearch: PropTypes.string.isRequired,
+  setNewSearch: PropTypes.func.isRequired,
+  loadRepositories: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
