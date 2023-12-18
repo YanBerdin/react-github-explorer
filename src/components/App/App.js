@@ -1,5 +1,6 @@
 import "./App.scss";
-import { Container } from "semantic-ui-react";
+import { Container, Menu, Segment } from "semantic-ui-react";
+import { NavLink, Route, Routes } from "react-router-dom";
 
 import Header from "../Header/Header";
 import SearchBar from "../SearchBar/SearchBar";
@@ -41,18 +42,45 @@ function App() {
   return (
     <Container>
       <Header />
-      <Message
-        totalCount={totalCount}
-        // Check if Input is Controlled
-        // newSearch={newSearch}
-      />
+      <Menu>
+        <Menu.Item>
+          <NavLink to="/">Recherche</NavLink>
+        </Menu.Item>
+        <Menu.Item>
+          <NavLink to="/faq">FAQ</NavLink>
+        </Menu.Item>
+      </Menu>
 
-      <SearchBar
-        newSearch={newSearch}
-        setNewSearch={setNewSearch}
-        loadRepositories={loadRepositories}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Segment>
+              <Message totalCount={totalCount} newSearch={newSearch} />
+              <SearchBar
+                newSearch={newSearch}
+                setNewSearch={setNewSearch}
+                loadRepositories={loadRepositories}
+              />
+            </Segment>
+          }
+        />
+        
+        <Route
+          path="/faq"    
+          element={(
+            <Segment>
+              <ul>
+                <li>A quoi ça sert ? A chercher des trucs</li>
+                <li>C'est dingue quand même ? Oui.</li>
+              </ul>
+            </Segment>
+        )}
+        />
 
+
+        
+      </Routes>
       <ReposResults repositories={repositories} />
     </Container>
   );

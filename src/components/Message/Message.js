@@ -5,8 +5,7 @@ function Message({ totalCount, newSearch }) {
   return (
     <Segment>
       <p>
-        {" "}
-        {newSearch} La recherche a donné {totalCount} résultat
+        La recherche "{newSearch}" a retourné {totalCount} résultat
         {totalCount > 1 ? "s" : ""}
       </p>
     </Segment>
