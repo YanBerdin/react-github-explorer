@@ -19,7 +19,7 @@ function SearchBar({ newSearch, setNewSearch, loadRepositories }) {
           icon="search"
           iconPosition="left"
           placeholder="Search..."
-          newSearch={newSearch}
+          value={newSearch}
           onChange={(event) => {
             setNewSearch(event.target.value);
           }}

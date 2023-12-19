@@ -25,7 +25,7 @@ function App() {
       setRepositories(response.data.items);
       setTotalCount(response.data.total_count);
 
-      console.log(response.data.total_count);
+      // console.log(response.data.total_count);
       console.log(response.data.items);
       console.log(repositories);
     } catch (error) {
@@ -40,7 +40,7 @@ function App() {
   }, []);
 
   return (
-    <Container>
+    <Container fluid>
       <Header />
       <Menu>
         <Menu.Item>
