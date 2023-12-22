@@ -62,7 +62,9 @@ function App() {
                 setNewSearch={setNewSearch}
                 loadRepositories={loadRepositories}
               />
+              <ReposResults repositories={repositories} />
             </Segment>
+            
           }
         />
         
@@ -81,7 +83,7 @@ function App() {
 
         
       </Routes>
-      <ReposResults repositories={repositories} />
+      
     </Container>
   );
 }
