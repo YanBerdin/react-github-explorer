@@ -12,12 +12,6 @@ function ReposResults({ repositories }) {
       <Segment>
         <Card.Group itemsPerRow={5} centered={true}>
           {repositories.map((repository) => (
-            // <a
-            //   key={repository.id}
-            //   href={repository.html_url}
-            //   target="_blank"
-            //   rel="noopener noreferrer"
-            // >
             <Card
               key={repository.id}
               raised={true}
@@ -32,7 +26,7 @@ function ReposResults({ repositories }) {
                 <Card.Meta>
                   <Icon name="user" /> {repository.owner.login}
                 </Card.Meta>
-                <Card.Meta>Type :{repository.owner.type}</Card.Meta>
+                <Card.Meta>Type : {repository.owner.type}</Card.Meta>
                 <Card.Description>{repository.description}</Card.Description>
               </Card.Content>
             </Card>

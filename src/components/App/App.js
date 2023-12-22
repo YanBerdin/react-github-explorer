@@ -64,26 +64,22 @@ function App() {
               />
               <ReposResults repositories={repositories} />
             </Segment>
-            
           }
         />
-        
+
         <Route
-          path="/faq"    
-          element={(
+          path="/faq"
+          element={
             <Segment>
               <ul>
-                <li>A quoi ça sert ? A chercher des trucs</li>
-                <li>C'est dingue quand même ? Oui.</li>
+                <li>A quoi ça sert ? </li>
+                <li>A chercher des trucs</li>
+                <li>C'est dingue quand même !</li>
               </ul>
             </Segment>
-        )}
+          }
         />
-
-
-        
       </Routes>
-      
     </Container>
   );
 }
