@@ -78,6 +78,15 @@ function App() {
             </Segment>
           }
         />
+
+        <Route
+          path="*"
+          element={
+            <Segment>
+              <h1>Oups, une erreur 404 : Cette page n'existe pas</h1>
+            </Segment>
+          }
+        />
       </Routes>
     </Container>
   );
