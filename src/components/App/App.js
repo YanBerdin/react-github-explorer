@@ -50,7 +50,6 @@ function App() {
           <NavLink to="/faq">FAQ</NavLink>
         </Menu.Item>
       </Menu>
-
       <Routes>
         <Route
           path="/"
