@@ -16,7 +16,7 @@ function SearchBar({ newSearch, setNewSearch, loadRepositories }) {
         }}
       >
         <Input
-          Required
+          required
           fluid
           icon="search"
           iconPosition="left"
