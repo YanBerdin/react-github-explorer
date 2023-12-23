@@ -12,9 +12,9 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [repositories, setRepositories] = useState([]);
-  // const [searchResults, setSearchResults] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [newSearch, setNewSearch] = useState("react");
+  const [repositoriesError, setRepositoriesError] = useState(false);
 
   const loadRepositories = async () => {
     try {
@@ -30,6 +30,8 @@ function App() {
       console.log(repositories);
     } catch (error) {
       alert("Le serveur ne fonctionne plus, revenez plus tard.");
+      // Capture l'erreur
+      setRepositoriesError(error);
     }
   };
 
@@ -41,28 +43,35 @@ function App() {
 
   return (
     <Container fluid>
+      {/* <Segment> */}
       <Header />
-      <Menu>
-        <Menu.Item>
-          <NavLink to="/">Recherche</NavLink>
-        </Menu.Item>
-        <Menu.Item>
-          <NavLink to="/faq">FAQ</NavLink>
-        </Menu.Item>
-      </Menu>
+        <Menu>
+          <Menu.Item>
+            <NavLink to="/">Recherche</NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/faq">FAQ</NavLink>
+          </Menu.Item>
+        </Menu>
+      {/* </Segment> */}
       <Routes>
         <Route
           path="/"
           element={
-            <Segment>
+              <>
               <Message totalCount={totalCount} newSearch={newSearch} />
               <SearchBar
                 newSearch={newSearch}
                 setNewSearch={setNewSearch}
                 loadRepositories={loadRepositories}
               />
-              <ReposResults repositories={repositories} />
-            </Segment>
+              {repositoriesError ? (
+                <p>{repositoriesError.message}</p> // Passer l’erreur à Message
+              ) : (
+                <ReposResults repositories={repositories} />
+              )}
+            
+            </>
           }
         />
 

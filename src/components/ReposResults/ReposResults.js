@@ -25,7 +25,7 @@ function ReposResults({ repositories }) {
             <Card.Content>
               <Image
                 // className="avatar"
-                size="mini"
+                size="tiny"
                 // avatar={true}
                 floated="right"
                 src={repository.owner.avatar_url}

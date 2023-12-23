@@ -1,8 +1,11 @@
- .header-container{
-display: flex;
-justify-content: center;
- }
+.header-container {
+  display: flex;
+  justify-content: center;
+  // background-color: rgb(191, 184, 184);
+  // padding-left: 1rem;
+  // padding-right: 1rem;
+}
 
- .header-image {
-  max-width: 100%;
- }
+.header-image {
+  max-width: 80%;
+}

@@ -1,4 +1,5 @@
-import 'fomantic-ui/dist/semantic.min.css' 
+import 'fomantic-ui/dist/semantic.min.css';
+import "./styles/index.scss";
 
 // == Import : npm
 import { createRoot } from 'react-dom/client';
