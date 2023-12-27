@@ -1,5 +1,5 @@
 import "./App.scss";
-import { Container, Menu, Segment, Loader } from "semantic-ui-react";
+import { Container, Menu, Segment, Button } from "semantic-ui-react";
 import { NavLink, Route, Routes } from "react-router-dom";
 
 import Header from "../Header/Header";
@@ -16,14 +16,15 @@ function App() {
   const [newSearch, setNewSearch] = useState("react");
   const [repositoriesError, setRepositoriesError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const loadRepositories = async () => {
-    // Avant l'appel à l'API, j'indique que je suis en train de charger les données
-    // en passant loading du state à "true"
+    // Avant l'appel à l'API => charger les données en passant loading dans state à "true"
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://api.github.com/search/repositories?q=${newSearch}`
+        // `https://api.github.com/search/repositories?q=${newSearch}`
+        `https://api.github.com/search/repositories?q=${newSearch}&sort=stars&order=desc&page=${currentPage}&per_page=30`
       );
 
       setRepositories(response.data.items);
@@ -38,7 +39,7 @@ function App() {
       setRepositoriesError(error);
     } finally {
       // le callback passé à finally est toujours appelé par axios
-      // que la requête ait fonctionné ou soit en erreur
+      // que la requête soit ok ou soit en erreur
       setLoading(false); //arrêter l’indicateur de chargement
     }
   };
@@ -47,7 +48,7 @@ function App() {
     console.log("Hello ! Le composant App est rendu");
     loadRepositories();
     console.log("Chargement repositories 1er affichage OK");
-  }, []);
+  }, [currentPage]); // Appel API à chaque modif de currentPage
 
   return (
     <Container fluid>
@@ -66,15 +67,15 @@ function App() {
         <Route
           path="/"
           element={
-            loading ? ( // Si loading => affiche <Loader>
-            // Attention : Grace au trait d'union loader sur la page
-              <div className="ui-segment"> 
+            loading ? ( // afficher <Loader>
+              // Attention : Grace au trait d'union loader sur la page
+              <div className="ui-segment">
                 <div className="ui active dimmer">
                   <div className="ui huge text loader">Loading</div>
                 </div>
               </div>
             ) : (
-              // Sinon affiche <Fragment>
+              // Sinon afficher <Fragment>
               <>
                 <Message totalCount={totalCount} newSearch={newSearch} />
                 <SearchBar
@@ -83,13 +84,32 @@ function App() {
                   loadRepositories={loadRepositories}
                 />
                 {repositoriesError ? (
+                  // Passer l’erreur à Message
                   <Segment>
-                    <p>{repositoriesError.message}</p> // Passer l’erreur à
-                    Message
+                    <p>
+                      Attention ! Une erreur est survenue :{" "}
+                      {repositoriesError.message}
+                    </p>
                   </Segment>
                 ) : (
                   <ReposResults repositories={repositories} />
                 )}
+                <Segment>
+                  <Button
+                    onClick={() => {
+                      setCurrentPage(currentPage - 1);
+                    }}
+                  >
+                    précédent
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setCurrentPage(currentPage + 1);
+                    }}
+                  >
+                    Suivant
+                  </Button>
+                </Segment>
               </>
             )
           }
@@ -99,12 +119,13 @@ function App() {
           path="/faq"
           element={
             <Segment>
-              <ul>
-                <li>A quoi ça sert ? </li>
-                <li>A chercher des trucs</li>
-                <li>C'est dingue quand même !</li>
-              </ul>
-            </Segment>
+              
+                <p>A quoi ça sert ? </p>
+                <p>A explorer les repositories sur GitHub</p>
+                <p>En plus ils sont classés par nombre d'<span>&#11088;</span> </p>
+                <p>C'est dingue quand même !</p>
+              
+              </Segment>
           }
         />
 
