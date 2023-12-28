@@ -61,8 +61,8 @@ function App() {
     // console.log("App est rendu");
     loadRepositories();
     // console.log("Chargement repos 1er affichage");
-  }, [currentPage]); // Appel API à chaque MAJ de currentPage
-
+  }, [currentPage]); // Surveiller la modification de currentpage en le passant en 2eme paramètre à useEffect()
+  
   return (
     <Container fluid className="app">
       <Segment>

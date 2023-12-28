@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Segment } from "semantic-ui-react";
 
-function Message({ totalCount, newSearch }) {
+function Message({ totalCount}) {
   const segmentStyle = {
     margin: "0",
   };
