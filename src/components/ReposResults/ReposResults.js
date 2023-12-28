@@ -7,10 +7,14 @@ function ReposResults({ repositories }) {
   // const searchResult = searchResults.length;
   // console.log(repositories);
 
+  const segmentStyle = {
+    margin: "0",
+  };
+
   return (
     // console.log(totalCount);
     // console.log(repositories),
-    <Segment>
+    <Segment style={segmentStyle}>
       <Card.Group itemsPerRow={5} centered={true} className="CardGroup">
         {repositories.map((repository) => (
           <Card
@@ -42,7 +46,6 @@ function ReposResults({ repositories }) {
               <Card.Description>{repository.description}</Card.Description>
             </Card.Content>
           </Card>
-          // </a>
         ))}
       </Card.Group>
     </Segment>

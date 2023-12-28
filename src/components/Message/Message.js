@@ -2,8 +2,12 @@ import PropTypes from "prop-types";
 import { Segment } from "semantic-ui-react";
 
 function Message({ totalCount, newSearch }) {
+  const segmentStyle = {
+    margin: "0",
+  };
+
   return (
-    <Segment>
+    <Segment style={segmentStyle}>
       <p>
         La recherche a retourné {totalCount} résultat
         {totalCount > 1 ? "s" : ""}

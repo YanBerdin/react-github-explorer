@@ -1,19 +1,25 @@
-// .app {
-//   width: 800px;
-//   margin: 1em auto;
-//   text-align: center;
-// }
+.app {
+  margin: 0rem;
+  background-color: rgb(8, 8, 8);
+}
 
-// img {
-//   min-height: 150px;
-// }
 p {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 
 span {
   font-size: 30px;
-  color: rgb(225, 7, 237);
+  color: rgb(15, 7, 237);
   max-width: 16px;
-  vertical-align: -6%;
+  vertical-align: -15%;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.ui-loader {
+  min-height: 350px;
 }

@@ -1,5 +1,14 @@
 import "./App.scss";
-import { Container, Menu, Segment, Button } from "semantic-ui-react";
+
+import {
+  Container,
+  Menu,
+  Segment,
+  Button,
+  Dimmer,
+  Loader,
+} from "semantic-ui-react";
+
 import { NavLink, Route, Routes } from "react-router-dom";
 
 import Header from "../Header/Header";
@@ -18,6 +27,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const segmentStyle = {
+    margin: "0",
+  };
+
   const loadRepositories = async () => {
     // Avant l'appel à l'API => charger les données en passant loading dans state à "true"
     setLoading(true);
@@ -26,13 +39,13 @@ function App() {
         // `https://api.github.com/search/repositories?q=${newSearch}`
         `https://api.github.com/search/repositories?q=${newSearch}&sort=stars&order=desc&page=${currentPage}&per_page=30`
       );
-
+      // MAJ de la liste des repos dans State
       setRepositories(response.data.items);
+      // MAJ Nbre de repos dans State
       setTotalCount(response.data.total_count);
 
-      // console.log(response.data.total_count);
-      console.log(response.data.items);
-      console.log(repositories);
+      // console.log(response.data.items);
+      // console.log(repositories);
     } catch (error) {
       alert("Le serveur ne fonctionne plus, revenez plus tard.");
       // Capture l'erreur
@@ -45,99 +58,107 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("Hello ! Le composant App est rendu");
+    // console.log("App est rendu");
     loadRepositories();
-    console.log("Chargement repositories 1er affichage OK");
-  }, [currentPage]); // Appel API à chaque modif de currentPage
+    // console.log("Chargement repos 1er affichage");
+  }, [currentPage]); // Appel API à chaque MAJ de currentPage
 
   return (
-    <Container fluid>
-      {/* <Segment> */}
-      <Header />
-      <Menu>
-        <Menu.Item>
-          <NavLink to="/">Recherche</NavLink>
-        </Menu.Item>
-        <Menu.Item>
-          <NavLink to="/faq">FAQ</NavLink>
-        </Menu.Item>
-      </Menu>
-      {/* </Segment> */}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            loading ? ( // afficher <Loader>
-              // Attention : Grace au trait d'union loader sur la page
-              <div className="ui-segment">
-                <div className="ui active dimmer">
-                  <div className="ui huge text loader">Loading</div>
-                </div>
-              </div>
-            ) : (
-              // Sinon afficher <Fragment>
-              <>
-                <Message totalCount={totalCount} newSearch={newSearch} />
-                <SearchBar
-                  newSearch={newSearch}
-                  setNewSearch={setNewSearch}
-                  loadRepositories={loadRepositories}
-                />
-                {repositoriesError ? (
-                  // Passer l’erreur à Message
-                  <Segment>
-                    <p>
-                      Attention ! Une erreur est survenue :{" "}
-                      {repositoriesError.message}
-                    </p>
-                  </Segment>
-                ) : (
-                  <ReposResults repositories={repositories} />
-                )}
-                <Segment>
-                  <Button
-                    onClick={() => {
-                      setCurrentPage(currentPage - 1);
-                    }}
-                  >
-                    précédent
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setCurrentPage(currentPage + 1);
-                    }}
-                  >
-                    Suivant
-                  </Button>
-                </Segment>
-              </>
-            )
-          }
-        />
+    <Container fluid className="app">
+      <Segment>
+        <Header />
+        <Menu style={segmentStyle}>
+          <Menu.Item>
+            <NavLink to="/">Recherche</NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/faq">FAQ</NavLink>
+          </Menu.Item>
+        </Menu>
 
-        <Route
-          path="/faq"
-          element={
-            <Segment>
-              
+        <Routes>
+          <Route
+            path="/"
+            element={
+              loading ? ( // afficher <Loader> pendant Loading
+                <Segment className="ui-loader">
+                  <Dimmer active>
+                    <Loader size="huge">
+                      <section>Loading</section>
+                    </Loader>
+                  </Dimmer>
+                </Segment>
+              ) : (
+                // Sinon afficher <Fragment> Message + searchBar + Liste repos
+                <>
+                  <Message totalCount={totalCount} newSearch={newSearch} />
+                  <SearchBar
+                    newSearch={newSearch}
+                    setNewSearch={setNewSearch}
+                    loadRepositories={loadRepositories}
+                  />
+                  {repositoriesError ? (
+                    // Passer l’erreur à <Message>
+                    <Segment>
+                      <p>
+                        Attention ! Une erreur est survenue :
+                        {repositoriesError.message}
+                      </p>
+                    </Segment>
+                  ) : (
+                    <>
+                      <ReposResults repositories={repositories} />
+                      <div className="pagination">
+                        <Button
+                          className="ui primary basic button"
+                          onClick={() => {
+                            setCurrentPage(currentPage - 1);
+                          }}
+                        >
+                          <i className="angle double left icon"></i>
+                          Préc.
+                        </Button>
+                        <Button
+                          className="ui primary basic button top attached"
+                          onClick={() => {
+                            setCurrentPage(currentPage + 1);
+                          }}
+                        >
+                          Suiv.
+                          <i className="angle double right icon"></i>
+                        </Button>
+                      </div>
+                    </>
+                  )}
+                </>
+              )
+            }
+          />
+
+          <Route
+            path="/faq"
+            element={
+              <Segment>
                 <p>A quoi ça sert ? </p>
                 <p>A explorer les repositories sur GitHub</p>
-                <p>En plus ils sont classés par nombre d'<span>&#11088;</span> </p>
-                <p>C'est dingue quand même !</p>
-              
+                <p>
+                  En plus ils sont classés par nombre d'<span>&#11088;</span>{" "}
+                </p>
+                <p>C'est fascinant !</p>
               </Segment>
-          }
-        />
+            }
+          />
 
-        <Route
-          path="*"
-          element={
-            <Segment>
-              <h1>Oups, une erreur 404 : Cette page n'existe pas</h1>
-            </Segment>
-          }
-        />
-      </Routes>
+          <Route
+            path="*"
+            element={
+              <Segment>
+                <h1>Oups, une erreur 404 : Cette page n'existe pas</h1>
+              </Segment>
+            }
+          />
+        </Routes>
+      </Segment>
     </Container>
   );
 }

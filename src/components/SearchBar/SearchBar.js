@@ -3,8 +3,8 @@ import { Form, Input, Segment } from "semantic-ui-react";
 
 function SearchBar({ newSearch, setNewSearch, loadRepositories }) {
   const segmentStyle = {
-    margin: 0,
-    padding: 0,
+    margin: "0",
+    padding: "0rem 0rem 0rem 0rem",
   };
 
   return (
@@ -18,8 +18,11 @@ function SearchBar({ newSearch, setNewSearch, loadRepositories }) {
         <Input
           required
           fluid
-          icon="search"
-          iconPosition="left"
+          name="search-form"
+          // icon="search"
+          action={{ icon: "search" }}
+          // iconPosition="left"
+          actionPosition="left"
           placeholder="Search..."
           value={newSearch} // sanitized by React
           onChange={(event) => {
