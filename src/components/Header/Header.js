@@ -8,6 +8,10 @@ const segmentStyle = {
   margin: "0",
 };
 
+/**
+ * Renders the header component.
+ * @returns {JSX.Element} The rendered header component.
+ */
 function Header() {
   return (
     <Segment style={segmentStyle}>

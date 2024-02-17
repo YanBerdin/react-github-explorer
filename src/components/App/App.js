@@ -19,6 +19,11 @@ import Message from "../Message/Message";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+/**
+ * The main component of the application.
+ *
+ * @returns {JSX.Element} The rendered App component.
+ */
 function App() {
   const [repositories, setRepositories] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
@@ -31,6 +36,12 @@ function App() {
     margin: "0",
   };
 
+  /**
+   * Loads repositories from the GitHub API based on the search query and current page.
+   * @async
+   * @function loadRepositories
+   * @returns {Promise<void>}
+   */
   const loadRepositories = async () => {
     // Avant l'appel à l'API => charger les données en passant loading dans state à "true"
     setLoading(true);
