@@ -1,4 +1,10 @@
-# SPA Github API
+# React GitHub Explorer
+Done with React-Model
+
+## https://new-react-github-explorer.vercel.app/
+Run with create-react-app
+
+A SPA Github Repository finder using React & GitHub API
 
 **Objectif**
 
