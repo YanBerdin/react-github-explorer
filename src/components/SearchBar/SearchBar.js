@@ -1,6 +1,15 @@
 import PropTypes from "prop-types";
 import { Form, Input, Segment } from "semantic-ui-react";
 
+/**
+ * Represents a search bar component.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.newSearch - The current search value.
+ * @param {function} props.setNewSearch - The function to update the search value.
+ * @param {function} props.loadRepositories - The function to load repositories.
+ * @returns {JSX.Element} The search bar component.
+ */
 function SearchBar({ newSearch, setNewSearch, loadRepositories }) {
   const segmentStyle = {
     margin: "0",
