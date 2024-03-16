@@ -108,3 +108,5 @@ https://api.github.com/search/repositories?q=REPOACHERCHER&sort=stars&order=desc
 - On modifie l'url appelée avec des paramètres get supplémentaires, ainsi on demande 9 repos par page, on commence à la page 1 et on tri les résultats par nombre d'étoiles décroissantes
 - On ajoute un bouton à la suite des résultats _Plus de résultats_
 - Au clic sur ce bouton on charge les 9 repos suivants, qu'on affiche à la suite des 9 premiers, et ainsi de suite
+
+(node_modules supprimés pour libérer espace disque VM)
