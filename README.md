@@ -26,7 +26,7 @@ Ils sont triés selon leur nombre de
 
 ### `Router`
 
-- Une page de recherche directement à la racine `/` qui affiche le champ de recherche et les résultats
-- Une page FAQ à l'adresse `/faq` qui affiche des questions et des réponses. 
-- une page d'erreur si l'on saisit une mauvaise adresse
-- un menu pour naviguer entre les pages. 
+- On modifie l'url appelée avec des paramètres get supplémentaires, ainsi on demande 9 repos par page, on commence à la page 1 et on tri les résultats par nombre d'étoiles décroissantes
+- On ajoute un bouton à la suite des résultats _Plus de résultats_
+- Au clic sur ce bouton on charge les 9 repos suivants, qu'on affiche à la suite des 9 premiers, et ainsi de suite
+
