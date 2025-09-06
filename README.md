@@ -1,4 +1,5 @@
-# React GitHub Explorer
+# `React GitHub Explorer`
+
 Done with React-Model
 
 A SPA Github Repository finder using React & GitHub API
@@ -22,6 +23,7 @@ Pour gagner du temps sur la mise en forme, utilisation de la bibliothèque: Sema
 Au submit du formulaire de recherche, une requête à l'API de GITHUB est faite pour récupérer les résultats.
 En cas de resultats, ils s'affichent sous la barre de recherche, sous forme de cartes, comme sur l'image.
 Ils sont triés selon leur nombre de 
+
 ### `Router`
 
 - Une page de recherche directement à la racine `/` qui affiche le champ de recherche et les résultats
